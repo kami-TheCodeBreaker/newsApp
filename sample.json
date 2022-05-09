@@ -1,0 +1,69 @@
+{
+  "status": "ok",
+  "totalResults": 6,
+  "articles": [
+    {
+      "source": { "id": "usa-today", "name": "USA Today" },
+      "author": null,
+      "title": "Gun violence is seeping onto American sports fields – and it’s impacting kids",
+      "description": "Gunfire sent hundreds of children and parents running last week at a football game in Virginia, the latest gun violence at kids' sporting events.",
+      "url": "https://www.usatoday.com/story/news/nation/2022/05/03/shootings-youth-sports-events/9617868002/",
+      "urlToImage": "https://www.gannett-cdn.com/presto/2020/09/22/USAT/2f4aaa65-bad4-4af3-96a6-e79aab72287d-017_CORONAVIRUS_SPORTS.023.JPG?auto=webp&crop=2598,1461,x1,y1389&format=pjpg&width=1200",
+      "publishedAt": "2022-05-07T14:53:24+00:00",
+      "content": "Gunfire sent hundreds of kids and parents scattering at a flag football game in northern Virginia last Sunday morning. Many took shelter behind trees and bushes near the field.\r\nThe incident came on … [+7406 chars]"
+    },
+    {
+      "source": { "id": "usa-today", "name": "USA Today" },
+      "author": null,
+      "title": "2022 Kentucky Derby: How to turn $100 bet into a profitable venture at the Run for the Roses",
+      "description": "Wagering the Kentucky Derby is always a tough task. USA TODAY Sports' Dan Wolken tells us how to bankroll $100 at the Run for the Roses.",
+      "url": "https://www.usatoday.com/story/sports/college/columnist/dan-wolken/2022/05/07/kentucky-derby-handicap-wager-zandon-epicenter/9672841002/",
+      "urlToImage": "https://www.gannett-cdn.com/presto/2022/05/04/USAT/f558b5a2-8eb7-4913-90d1-76af879759f9-USP_Horse_Racing__148th_Kentucky_Derby-Workouts.jpg?auto=webp&crop=7099,3993,x1,y31&format=pjpg&width=1200",
+      "publishedAt": "2022-05-07T14:22:01+00:00",
+      "content": "LOUISVILLE — From a handicapping and wagering standpoint, there are two different paths you can choose in this year’s Kentucky Derby.\r\nThe first way to analyze the race would be to frame everything a… [+5111 chars]"
+    },
+    {
+      "source": { "id": "wired", "name": "Wired" },
+      "author": "Wired",
+      "title": "Hockey Star Zach Hyman Has Made Esports His Off-Ice Hustle",
+      "description": "The Oilers forward's experience playing in the NHL and gaming with his family put him in a unique spot to translate traditional sports into pixels.",
+      "url": "https://www.wired.com/story/zach-hyman-esports-gaming-hockey-edmonton-oilers",
+      "urlToImage": "https://media.wired.com/photos/6275a8a81ccd62686f07101a/191:100/w_1280,c_limit/Zach-Hyman-GettyImages-1236651174.jpg",
+      "publishedAt": "2022-05-07T11:00:00Z",
+      "content": "Growing up in Toronto, Edmonton Oilers forward Zach Hyman and his four younger brothers bonded over gamesbasketball, soccer, and ball hockey outside, ice hockey at local arenas, and whatever Mario or… [+2931 chars]"
+    },
+    {
+      "source": { "id": "fox-sports", "name": "Fox Sports" },
+      "author": "FOX Sports",
+      "title": "USFL odds Week 4: Three best bets to make now",
+      "description": "FOX Sports betting expert Geoff Schwartz offers up his three best wagers for Week 4 of the USFL season.",
+      "url": "http://www.foxsports.com/stories/usfl/usfl-odds-week-4-three-best-bets-to-make-now",
+      "urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2022/05/1408/814/05.5.22_USFL-Week-4-Best-Bets_16x9.jpg?ve=1&tl=1",
+      "publishedAt": "2022-05-06T18:21:11Z",
+      "content": "By Geoff Schwartz\r\nFOX Sports NFL Analyst\r\nWeek 4 of the USFL is here! Four games over three days, and I can't wait to watch and wager on the action.\r\nOne of the neat things about the league is that … [+4304 chars]"
+    },
+    {
+      "source": { "id": "bleacher-report", "name": "Bleacher Report" },
+      "author": "Scott Harris",
+      "title": "With Canelo and UFC 274 This Weekend, a Cavalcade of Combat Sports Is Upon Us",
+      "description": "If you're a combat sports fan and you have $134.98 in extra dollars to spend, you have one job this weekend. You must batten down the hatches...",
+      "url": "https://bleacherreport.com/articles/2955910-with-canelo-and-ufc-274-this-weekend-a-cavalcade-of-combat-sports-is-upon-us",
+      "urlToImage": "https://img.bleacherreport.net/img/images/photos/003/921/641/hi-res-5e1ee59d74337e71e792f63d7213a0f4_crop_exact.jpg?w=1200&h=1200&q=75",
+      "publishedAt": "2022-05-06T11:00:00Z",
+      "content": "Saul \"Canelo\" AlvarezSteve Marcus/Associated Press\r\nIf you're a combat sports fan and you have $134.98 in extra dollars to spend, you have one job this weekend. You must batten down the hatches. Batt… [+9216 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-times",
+        "name": "The Washington Times"
+      },
+      "author": "The Washington Times http://www.washingtontimes.com",
+      "title": "Latest Quizzes",
+      "description": "Take a break from the hard news of the day and enjoy a quiz on entertainment, sports, history and politics only from The Washington Times.",
+      "url": "https://www.washingtontimes.com/",
+      "urlToImage": null,
+      "publishedAt": "2021-02-10T03:52:37.2719772Z",
+      "content": "Featured Quizzes\r\nAttention all William Shakespeare experts. Pinpoint the prose's origin plucked from one of his many famous plays in this multiple-choice challenge.\r\n Shares \r\nName these legendary c… [+32652 chars]"
+    }
+  ]
+}
