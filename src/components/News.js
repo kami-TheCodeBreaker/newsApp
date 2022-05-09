@@ -3,10 +3,6 @@ import NewsItem from "./NewsItem";
 import SpinLoader from "./SpinLoader";
 
 export default class News extends Component {
-  static defaultProps = {
-    country: "in",
-    pageSize: 6,
-  };
   static propTypes = {};
 
   constructor() {
