@@ -28,7 +28,7 @@ export default class NewsItem extends Component {
           <h1 className="text-2xl font-semibold my-3 w-image">
             {title ? title.slice(0, 22) : ""} ...
           </h1>
-          <p className="w-image ">
+          <p className="w-image my-3">
             {description ? description.slice(0, 42) : 'Taxiarchis Fountas hat D.C. United am Sams'} ...
           </p>
           <span>By <span className=" text-md underline hover:text-blue-700 hover:cursor-pointer">{author?(author.length<20?author:author.slice(0,20)+" ..."):"Unknown"}</span> <ReactTimeAgo date={new Date(publishedAt)} locale="en-US" /> </span>
