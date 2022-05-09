@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import SpinLoader from "./SpinLoader";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class News extends Component {
   static propTypes = {};
 
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       articles: [],
@@ -14,13 +15,16 @@ export default class News extends Component {
       nextBtnBgColor: "",
       dataLeft: true,
     };
+    props.setProgress(20);
   }
   async loadData() {
     const response = await fetch(
       `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
     );
+    this.props.setProgress(60);
     this.setState({ loading: true });
     const data = await response.json();
+    this.props.setProgress(100);
     this.setState({
       articles: data.articles,
       totalResults: data.totalResults,
@@ -42,8 +46,8 @@ export default class News extends Component {
   }
   async handleNextClick() {
     if (this.checkData()) {
-      this.setState({page:this.state.page+1}, this.loadData); 
-    if (
+      this.setState({ page: this.state.page + 1 }, this.loadData);
+      if (
         this.state.page + 1 ===
         Math.ceil(this.state.totalResults / this.props.pageSize)
       )
@@ -51,12 +55,28 @@ export default class News extends Component {
     }
   }
   async handlePrevClick() {
-    this.setState({page:this.state.page-1,dataLeft:true,nextBtnBgColor:""}, this.loadData); 
-
+    this.setState(
+      { page: this.state.page - 1, dataLeft: true, nextBtnBgColor: "" },
+      this.loadData
+    );
   }
   async componentDidMount() {
     this.loadData();
   }
+  fetchMoreData = async () => {
+    const response = await fetch(
+      `https://newsapi.org/v2/top-headlines?country=${
+        this.props.country
+      }&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${
+        this.state.page + 1
+      }&pageSize=${this.props.pageSize}`
+    );
+    const data = await response.json();
+    this.setState({
+      articles: this.state.articles.concat(data.articles),
+      page: this.state.page + 1,
+    });
+  };
   render() {
     return (
       <div className="newsContainer ">
@@ -64,10 +84,15 @@ export default class News extends Component {
         <h1 className="text-3xl font-semibold text-center mt-5">
           NewsMonkey - Top Headlines
         </h1>
-        <div className="max-w-full flex justify-center">
-          <div className="grid  grid-cols-3 w-max-fit gap-x-10 justify-center items-center">
-            {this.state.loading ||
-              this.state.articles.map((element) => {
+        <InfiniteScroll
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          hasMore={this.checkData()}
+          loader={<SpinLoader />}
+        >
+          <div className="max-w-full flex justify-center">
+            <div className="grid  grid-cols-3 w-max-fit gap-x-10 justify-center items-center">
+              {this.state.articles.map((element) => {
                 let {
                   title,
                   description,
@@ -90,30 +115,9 @@ export default class News extends Component {
                   />
                 );
               })}
+            </div>
           </div>
-        </div>
-        <div className="mx-auto btns flex justify-between w-3/4 mb-3">
-          <button
-            className="text-white bg-blue-700 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg"
-            onClick={this.handlePrevClick.bind(this)}
-            disabled={this.state.page === 1}
-            style={
-              this.state.page === 1
-                ? { backgroundColor: "grey" }
-                : { backgroundColor: "" }
-            }
-          >
-            Previous
-          </button>
-          <button
-            className=" text-white bg-blue-700 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg"
-            onClick={this.handleNextClick.bind(this)}
-            disabled={!this.state.dataLeft}
-            style={{ backgroundColor: this.state.nextBtnBgColor }}
-          >
-            Next
-          </button>
-        </div>
+        </InfiniteScroll>
       </div>
     );
   }

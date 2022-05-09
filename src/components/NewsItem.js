@@ -17,7 +17,7 @@ export default class NewsItem extends Component {
       "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?country=us&ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     if (!this.checkIfImageExists(imageUrl)) imageUrl = noImage;
     return (
-      <div className="card shadow-xl rounded w-fit px-2 py-2 my-9 font-ubuntu " style={{position:'relative'}}>
+      <div className="card shadow-xl rounded w-fit px-2 py-2 my-9 font-ubuntu	" style={{position:'relative'}}>
         <div className="badge bg-orange-700 rounded text-white px-3 py-2" style={{position:'absolute',right:-20,top:-7}}>
         {source}
         </div>
