@@ -1,16 +1,15 @@
 import { NewspaperIcon } from "@heroicons/react/solid";
-import React, { Component } from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 
-export class Navbar extends Component {
-  render() {
+const Navbar=()=> {
     return (
-      <div className="h-16 flex max-w-full px-5 bg-white-200 text-black  font-baloo shadow-xl ">
+      <div className="h-16 flex max-w-full px-5 bg-black text-white  font-baloo shadow-xl fixed top-0 left-0 right-0 z-10">
         <nav className="flex items-center justify-between w-full gap-9 ">
           <div className="icon">
             <Link to="/" className="flex flex-col justify-center ">
               <NewspaperIcon className="fill-white stroke-black h-10" />
-              <p className="text-black text-md  font-semibold">NewsMokey </p>
+              <p className="text-white text-md  font-semibold">NewsMokey </p>
             </Link>
           </div>
           <div className="navgation ">
@@ -43,5 +42,6 @@ export class Navbar extends Component {
         </nav>
       </div>
     );
-  }
 }
+
+export default Navbar;

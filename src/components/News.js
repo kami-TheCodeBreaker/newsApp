@@ -1,124 +1,111 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
 import SpinLoader from "./SpinLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default class News extends Component {
-  static propTypes = {};
+const News = (props) => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
 
-  constructor(props) {
-    super();
-    this.state = {
-      articles: [],
-      loading: true,
-      page: 1,
-      nextBtnBgColor: "",
-      dataLeft: true,
-    };
-    props.setProgress(20);
-  }
-  async loadData() {
+  const loadData = async () => {
     const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
     );
-    this.props.setProgress(60);
-    this.setState({ loading: true });
+    props.setProgress(60);
+    setLoading(true);
     const data = await response.json();
-    this.props.setProgress(100);
-    this.setState({
-      articles: data.articles,
-      totalResults: data.totalResults,
-      loading: false,
-    });
-  }
-  checkData() {
-    if (
-      this.state.page < Math.ceil(this.state.totalResults / this.props.pageSize)
-    )
-      return true;
-    if (
-      this.state.page ===
-      Math.ceil(this.state.totalResults / this.props.pageSize)
-    ) {
+    props.setProgress(100);
+    setArticles(data.articles);
+    setTotalResults(data.totalResults);
+    setLoading(false);
+  };
+  const checkData = () => {
+    if (page < Math.ceil(totalResults / props.pageSize)) return true;
+    if (page === Math.ceil(totalResults / props.pageSize)) {
       return false;
     }
-    if (this.state.page <= 1) return false;
-  }
-  async handleNextClick() {
-    if (this.checkData()) {
-      this.setState({ page: this.state.page + 1 }, this.loadData);
-      if (
-        this.state.page + 1 ===
-        Math.ceil(this.state.totalResults / this.props.pageSize)
-      )
-        this.setState({ nextBtnBgColor: "grey", dataLeft: false });
-    }
-  }
-  async handlePrevClick() {
-    this.setState(
-      { page: this.state.page - 1, dataLeft: true, nextBtnBgColor: "" },
-      this.loadData
-    );
-  }
-  async componentDidMount() {
-    this.loadData();
-  }
-  fetchMoreData = async () => {
+    if (page <= 1) return false;
+  };
+  // const handleNextClick=async()=> {
+  //   if (checkData()) {
+  //     setPage(page + 1);
+  //     loadData();
+  //     if (
+  //      page + 1 ===
+  //       Math.ceil(totalResults / props.pageSize)
+  //     )
+  //     setNextBtnBgColor('grey');
+  //     setDataLeft(false);
+  //   }
+  // }
+  // const handlePrevClick=async()=> {
+  //   setPage(page - 1);
+  //   setDataLeft(true);
+  //   nextBtnBgColor('');
+  //   loadData();
+  // }
+  useEffect(() => {
+    // other code
+    loadData();
+    props.setProgress(10);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchMoreData = async () => {
     const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${
-        this.state.page + 1
-      }&pageSize=${this.props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${
+        props.category
+      }&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`
     );
     const data = await response.json();
-    this.setState({
-      articles: this.state.articles.concat(data.articles),
-      page: this.state.page + 1,
-    });
+    setArticles(articles.concat(data.articles));
+    setPage(page + 1);
   };
-  render() {
-    return (
-      <div className="newsContainer ">
-        {this.state.loading && <SpinLoader />}
-        <h1 className="text-3xl font-semibold text-center mt-5">
-          NewsMonkey - Top Headlines
-        </h1>
-        <InfiniteScroll
-          dataLength={this.state.articles.length}
-          next={this.fetchMoreData}
-          hasMore={this.checkData()}
-          loader={<SpinLoader />}
-        >
-          <div className="max-w-full flex justify-center">
-            <div className="grid  grid-cols-3 w-max-fit gap-x-10 justify-center items-center">
-              {this.state.articles.map((element) => {
-                let {
-                  title,
-                  description,
-                  url,
-                  urlToImage,
-                  publishedAt,
-                  author,
-                  source,
-                } = element;
-                return (
-                  <NewsItem
-                    key={url}
-                    title={title}
-                    description={description}
-                    imageUrl={urlToImage}
-                    newsUrl={url}
-                    publishedAt={publishedAt}
-                    author={author}
-                    source={source.name}
-                  />
-                );
-              })}
-            </div>
+  return (
+    <div className="newsContainer ">
+      {loading && <SpinLoader />}
+      <h1 className="text-3xl font-semibold text-center mt-20">
+        NewsMonkey - Top Headlines
+      </h1>
+      <InfiniteScroll
+        dataLength={articles.length}
+        next={fetchMoreData}
+        hasMore={checkData()}
+        loader={<SpinLoader />}
+      >
+        <div className="max-w-full flex justify-center">
+          <div className="grid  grid-cols-3 w-max-fit gap-x-10 justify-center items-center">
+            {articles.map((element) => {
+              let {
+                title,
+                description,
+                url,
+                urlToImage,
+                publishedAt,
+                author,
+                source,
+              } = element;
+              return (
+                <NewsItem
+                  key={url}
+                  title={title}
+                  description={description}
+                  imageUrl={urlToImage}
+                  newsUrl={url}
+                  publishedAt={publishedAt}
+                  author={author}
+                  source={source.name}
+                />
+              );
+            })}
           </div>
-        </InfiniteScroll>
-      </div>
-    );
-  }
-}
+        </div>
+      </InfiniteScroll>
+    </div>
+  );
+};
+
+export default News;
